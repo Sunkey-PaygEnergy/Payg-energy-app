@@ -2,9 +2,76 @@
 
 import React, { useState } from 'react';
 import { FleetStatsCards, FleetStats } from './FleetStatsCards';
+import { DeviceTable, DeviceTableRowData } from './DeviceTable';
 import { Button } from '../ui/Button';
 import { PlusCircle, RefreshCw, Layers, ShieldAlert, TrendingUp, Sliders } from 'lucide-react';
 import { Lease, Device } from '@/types';
+
+const mockFleetData: DeviceTableRowData[] = [
+  {
+    id: 'LSE-001',
+    deviceId: 'DEV-SH100-8812',
+    operator: 'GBV76O4Q4V...SKOL',
+    customer: 'GA6M6Q3H62FSLG4YUSW23V6B3H6V32D4W6U6M3',
+    customerPhone: '+254 712 345 678',
+    planId: 'plan_standard_50w',
+    status: 'Active',
+    totalPaid: '145.00',
+    totalCashPrice: '250.00',
+    paidUntil: Math.floor(Date.now() / 1000) + 86400 * 18,
+    depositPaid: true,
+    modelName: 'Sinoware SunHome-Base 100',
+    hardwareType: 'iot_connected',
+    batteryVoltageMv: 12640,
+  },
+  {
+    id: 'LSE-002',
+    deviceId: 'DEV-VIC-4921',
+    operator: 'GBV76O4Q4V...SKOL',
+    customer: 'GDM7B22W5G67K2N89UJK4N2M8KL23M90KJ2819',
+    customerPhone: '+256 772 984 112',
+    planId: 'plan_pro_200w',
+    status: 'Active',
+    totalPaid: '280.00',
+    totalCashPrice: '450.00',
+    paidUntil: Math.floor(Date.now() / 1000) + 86400 * 5,
+    depositPaid: true,
+    modelName: 'Victron SHS200 Smart',
+    hardwareType: 'iot_connected',
+    batteryVoltageMv: 25400,
+  },
+  {
+    id: 'LSE-003',
+    deviceId: 'DEV-BBOX-0044',
+    operator: 'GBV76O4Q4V...SKOL',
+    customer: 'GCLK4M9283JD8274HDN8374HD83N82HD83HD92',
+    customerPhone: '+254 701 445 990',
+    planId: 'plan_basic_20w',
+    status: 'Suspended',
+    totalPaid: '72.00',
+    totalCashPrice: '150.00',
+    paidUntil: Math.floor(Date.now() / 1000) - 86400 * 4,
+    depositPaid: true,
+    modelName: 'Bboxx Flexx40 Keypad',
+    hardwareType: 'offline_keypad',
+  },
+  {
+    id: 'LSE-004',
+    deviceId: 'DEV-BLUE-9931',
+    operator: 'GBV76O4Q4V...SKOL',
+    customer: 'GBN73KD928HD837HD838JD9283HD837HD83HD8',
+    customerPhone: '+233 244 556 778',
+    planId: 'plan_premium_150w',
+    status: 'Owned',
+    totalPaid: '320.00',
+    totalCashPrice: '320.00',
+    paidUntil: Math.floor(Date.now() / 1000) + 86400 * 365,
+    depositPaid: true,
+    modelName: 'Bluetti Solar P150',
+    hardwareType: 'iot_connected',
+    batteryVoltageMv: 13200,
+  },
+];
 
 interface OperatorDashboardProps {
   operatorAddress: string;
@@ -149,12 +216,15 @@ export const OperatorDashboard: React.FC<OperatorDashboardProps> = ({
         </button>
       </div>
 
-      {/* Tab Content Placeholder (Populated as child components are committed) */}
+      {/* Tab Content Placeholder */}
       <div id="operator-tab-content">
         {activeTab === 'fleet' && (
-          <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-xs text-slate-400">
-            Fleet devices table rendered below.
-          </div>
+          <DeviceTable
+            leases={mockFleetData}
+            onGrantCredit={(l) => console.log('Credit', l)}
+            onSwapDevice={(l) => console.log('Swap', l)}
+            onRepossess={(l) => console.log('Repossess', l)}
+          />
         )}
         {activeTab === 'risk' && (
           <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-xs text-slate-400">
