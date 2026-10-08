@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { FleetStatsCards, FleetStats } from './FleetStatsCards';
 import { DeviceTable, DeviceTableRowData } from './DeviceTable';
 import { OverdueRiskView } from './OverdueRiskView';
+import { RepaymentCharts } from './RepaymentCharts';
 import { Button } from '../ui/Button';
 import { PlusCircle, RefreshCw, Layers, ShieldAlert, TrendingUp, Sliders } from 'lucide-react';
 import { Lease, Device } from '@/types';
@@ -231,9 +232,7 @@ export const OperatorDashboard: React.FC<OperatorDashboardProps> = ({
           <OverdueRiskView />
         )}
         {activeTab === 'analytics' && (
-          <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-xs text-slate-400">
-            Repayment curves and cashflow forecasting.
-          </div>
+          <RepaymentCharts />
         )}
       </div>
     </div>
