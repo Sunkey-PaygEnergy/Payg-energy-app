@@ -90,4 +90,4 @@ export interface PaymentReceipt {
   issuedAt: string;
 }
 
-export type UserRole = 'customer' | 'operator' | 'financier';
+export type UserRole = 'customer' | 'operator' | 'financier' | 'audit';

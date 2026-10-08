@@ -77,6 +77,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRole, onRoleChange }) => 
             <Landmark className="h-3.5 w-3.5" />
             <span>Financier</span>
           </button>
+          <button
+            onClick={() => onRoleChange('audit')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+              currentRole === 'audit'
+                ? 'bg-purple-500 text-white shadow-md font-bold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <ShieldCheck className="h-3.5 w-3.5" />
+            <span>Audit</span>
+          </button>
         </div>
 
         {/* Wallet Connect */}
