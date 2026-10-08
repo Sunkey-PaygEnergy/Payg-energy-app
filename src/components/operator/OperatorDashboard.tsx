@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { FleetStatsCards, FleetStats } from './FleetStatsCards';
 import { DeviceTable, DeviceTableRowData } from './DeviceTable';
+import { OverdueRiskView } from './OverdueRiskView';
 import { Button } from '../ui/Button';
 import { PlusCircle, RefreshCw, Layers, ShieldAlert, TrendingUp, Sliders } from 'lucide-react';
 import { Lease, Device } from '@/types';
@@ -227,9 +228,7 @@ export const OperatorDashboard: React.FC<OperatorDashboardProps> = ({
           />
         )}
         {activeTab === 'risk' && (
-          <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-xs text-slate-400">
-            Overdue aging analysis and repossession monitor.
-          </div>
+          <OverdueRiskView />
         )}
         {activeTab === 'analytics' && (
           <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-xs text-slate-400">
